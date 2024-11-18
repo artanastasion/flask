@@ -1,7 +1,7 @@
 import datetime
 from flask_login import login_user, LoginManager, login_required, logout_user, current_user
-
-from flask_sqlalchemy.data import users_api
+import locale
+# from flask_sqlalchemy.data import users_api
 from forms.user import RegisterForm
 from forms.job import JobsForm
 from flask import Flask, render_template, redirect, abort, request, jsonify, make_response
@@ -13,7 +13,7 @@ from data.loginform import LoginForm
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
-
+locale.setlocale(locale.LC_TIME, 'ru_RU.UTF-8')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
@@ -48,7 +48,6 @@ def index():
     jobs = db_sess.query(Jobs)
     if current_user.is_authenticated:
         return render_template("index.html", jobs=jobs)
-
     else:
         return render_template("base.html", jobs=jobs)
 

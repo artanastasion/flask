@@ -11,20 +11,32 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light">
         {% if current_user.is_authenticated %}
-            <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+        <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
+        {% if current_user.is_authenticated %}
+        <a href="jobs" class="btn btn-secondary">Добавить работу</a>
+        {% endif %}
         {% else %}
-            <p>
-                <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
-                <a class="btn btn-success" href="/login">Войти</a>
-            </p>
+        <p>
+            <a class="btn btn-primary " href="/register">Зарегистрироваться</a>
+            <a class="btn btn-success" href="/login">Войти</a>
+        </p>
         {% endif %}
     </nav>
 </header>
+<div style="display: flex;">
+    <img src="{{ url_for('static', filename='rb_1762.png') }}" style="max-width: 600px; margin-inline: auto;"/>
+</div>
+
 <!-- Begin page content -->
 <main role="main" class="container">
     {% block content %}{% endblock %}
 </main>
 </body>
+<style>
+    .navbar-light {
+        background-color: #ddf0ec;
+    }
+</style>
 </html>

@@ -18,5 +18,7 @@ class Jobs(SqlAlchemyBase, SerializerMixin):
     end_date = Column(DateTime, nullable=True)
     is_finished = Column(Boolean, nullable=True)
 
+
+
     def __repr__(self):
         return f"<Job> {self.id} {self.job} {self.user}"
